@@ -1,0 +1,42 @@
+<html>
+    <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Profile page</title>
+		<link rel="stylesheet" href="index.css">
+    <body>
+        <script src="index.js"></script> 
+        <div class="container">
+                <div class="head"> 
+                        <h1>MY DIARY</h1>
+                        <h3>OUR NUMBER ONE JOURNAL</h3>
+                   </div>
+                <div class="row1">
+                    <div class="col1"><center><a href="home.html" id="links">HOME</a> <button id="links" onclick="profile()">PROFILE</button><button id="links"onclick="reminders()">REMINDERS(0)</button><button id="links"onclick="logout()">LOGOUT</button></center></div>
+                    <div class="col2"><h2 id="u">ACTIVE USER: </h2></div>
+                </div></br>
+                <button id="links" onclick="editprofile()">EDIT PROFILE</button>
+                <h3>PROFILE PAGE</h3>
+                <div class="details">
+                <span>PROFILE PICTURE</span>
+                <div class="pic">
+                <img src="../images/pp.jpg" height=100% width=100%>
+                </div>
+                FIRSTNAME :<br><span>JOHN</span><br>
+                LASTNAME :<br><span>SMITH</span><br>
+                USERNAME :<br><span> HARRY POTTER</span><br>
+                GENDER :<br><span>MALE</span><br>
+                NUMBER OF ENTRIES SINCE REGISTRATION:<br><span>20</span><br>
+                </div>
+                <div class="details">
+                    SET REMINDER<br>
+                        <form>
+                           <span>CHECK TO SET REMINDER :<input type="checkbox" required></span><br><br>
+                            <button type="submit" id="loginbutton" formaction="profile.html">SET REMINDER</button></center>
+                            </form>
+                </div><br>       
+             <br><br>
+                <div class="bot"></div>   
+        </div>
+    </body>
+</html>
