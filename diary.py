@@ -1,42 +1,76 @@
-class Diary:
-    entries=[]
-    def __init__(self,_id,title,date,time,body):
-        self.id=_id
-        self.title=title
-        self.time=time
-        self.date=date
-        self.body=body
-        self.updated=time
+"""Diary class"""
+from flask import jsonify
+from validation1 import Validate
+
+
+class Diary():
+    """class with diary attributes"""
+
+    entries = []
+
+    def __init__(self, entry_id, title, date, time, body):
+        """initializing constructor"""
+        self.entry_id = entry_id
+        self.title = title
+        self.time = time
+        self.date = date
+        self.body = body
+        self.updated = time
     def create(self):
-        entry=Diary(self.id,self.title,self.date,self.time,self.body)
-        lst={}
-        lst["id"]=entry.id
-        lst["title"]=entry.title
-        lst["date"]=entry.date
-        lst["time"]=entry.time
-        lst["body"]=entry.body
-        lst["updated"]=entry.updated
-        Diary.entries.append(lst)
-        return lst
+        """method to create entries"""
+        entry = Diary(self.entry_id, self.title, self.date, self.time, self.body)
+        lst = {}
+        lst["entry_id"] = entry.entry_id
+        lst["title"] = entry.title
+        lst["date"] = entry.date
+        lst["time"] = entry.time
+        lst["body"] = entry.body
+        lst["updated"] = entry.updated
+        if Validate.validate_id(Diary.entries, self.entry_id):
+            response = jsonify({"message" : "Id has been taken,try again"})
+            response.status_code = 409
+            return response
+        if Validate.validate_entry(Diary.entries, entry):
+            response = jsonify({"message" : "Duplicate data,Try again"})
+            response.status_code = 409
+            return response
+        else:
+            Diary.entries.append(lst)
+            response = jsonify({"message" : "Entry saved", "data" : lst})
+            response.status_code = 201
+            return response
 
-    @classmethod    
-    def all(self):
-        return Diary.entries
+    @classmethod
+    def all(cls):
+        """method to get all entries"""
+        info = Diary.entries
+        response = jsonify({"data" : info})
+        response.status_code = 200
+        return response
 
-    @classmethod    
-    def singleEntry(cls,entryId):
-        result="invalid Id,Try again"
+    @classmethod
+    def single_entry(cls, entryid):
+        """method to get single entry"""
+        data = "invalid Id,Try again"
+        response = jsonify({"data":data})
+        response.status_code = 422
         for info in Diary.entries:
-            if info['id'] == entryId:
-                result =info
-        return result
+            if info['entry_id'] == entryid:
+                response = jsonify({"data" : info})
+                response.status_code = 200
+        return response
 
-    @classmethod    
-    def update(self,entryId,data):
-        result="invalid Id, cannot update"
+    @classmethod
+    def update(cls, entryid, data):
+        """method to update entries"""
+        result = "invalid Id, cannot update"
+        response = jsonify({"data" : result})
+        response.status_code = 422
         for info in Diary.entries:
-            if info['id'] == entryId:       
-                info["title"]=data["title"]
-                info["body"]=data["body"]
-                result="update successful"
-        return result    
+            if info['entry_id'] == entryid:
+                info["title"] = data["title"]
+                info["body"] = data["body"]
+                result = "update successful"
+                response = jsonify({"data" : info, "message" : "updated successfuly"})
+                response.status_code = 200
+        return response
