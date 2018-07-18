@@ -14,5 +14,5 @@ is a website that enables someone to record their daily activities,personal affa
  Updating an entry 
  
  
- https://travis-ci.org/kenneth051/MyDiary.svg?branch=develop
+[![Build Status](https://travis-ci.org/kenneth051/MyDiary.svg?branch=develop)](https://travis-ci.org/kenneth051/MyDiary)
 
