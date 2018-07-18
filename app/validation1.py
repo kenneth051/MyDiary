@@ -8,7 +8,6 @@ class Validate():
         """method to check for duplicate entries"""
         for data in entries:
             if (data['title'] == entry.title and
-                    data['date'] == entry.date and
                     data['body'] == entry.body):
                 return True
 

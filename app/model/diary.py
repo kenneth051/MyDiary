@@ -1,29 +1,29 @@
 """Diary class"""
 from flask import jsonify
-from validation1 import Validate
-
+from app.validation1 import Validate
+from datetime import date,datetime
 
 class Diary():
     """class with diary attributes"""
 
     entries = []
 
-    def __init__(self, entry_id, title, date, time, body):
+    def __init__(self, entry_id, title, body):
         """initializing constructor"""
         self.entry_id = entry_id
         self.title = title
-        self.time = time
-        self.date = date
         self.body = body
-        self.updated = time
+        self.updated = "-"
     def create(self):
         """method to create entries"""
-        entry = Diary(self.entry_id, self.title, self.date, self.time, self.body)
+        today = str(date.today())
+        t = str(datetime.time(datetime.now()))
+        entry = Diary(self.entry_id, self.title, self.body)
         lst = {}
         lst["entry_id"] = entry.entry_id
         lst["title"] = entry.title
-        lst["date"] = entry.date
-        lst["time"] = entry.time
+        lst["date"] = today
+        lst["time"] = t
         lst["body"] = entry.body
         lst["updated"] = entry.updated
         if Validate.validate_id(Diary.entries, self.entry_id):
@@ -66,10 +66,13 @@ class Diary():
         result = "invalid Id, cannot update"
         response = jsonify({"data" : result})
         response.status_code = 422
+        now = datetime.now()
+        new_date = now.strftime("%c")
         for info in Diary.entries:
             if info['entry_id'] == entryid:
                 info["title"] = data["title"]
                 info["body"] = data["body"]
+                info["updated"] = new_date
                 result = "update successful"
                 response = jsonify({"data" : info, "message" : "updated successfuly"})
                 response.status_code = 200
