@@ -12,3 +12,4 @@ is a website that enables someone to record their daily activities,personal affa
  Viewing all entries
  Viewing a specific entry
  Updating an entry 
+
