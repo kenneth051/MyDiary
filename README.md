@@ -16,3 +16,5 @@ is a website that enables someone to record their daily activities,personal affa
  
 [![Build Status](https://travis-ci.org/kenneth051/MyDiary.svg?branch=develop)](https://travis-ci.org/kenneth051/MyDiary)
 
+<a href="https://codeclimate.com/github/kenneth051/MyDiary/maintainability"><img src="https://api.codeclimate.com/v1/badges/9d29aad9c943fed7228d/maintainability" /></a>
+
