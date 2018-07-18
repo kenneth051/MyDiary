@@ -20,3 +20,4 @@ is a website that enables someone to record their daily activities,personal affa
 
 <a href="https://codeclimate.com/github/kenneth051/MyDiary/test_coverage"><img src="https://api.codeclimate.com/v1/badges/9d29aad9c943fed7228d/test_coverage" /></a>
 
+[![Coverage Status](https://coveralls.io/repos/github/kenneth051/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/kenneth051/MyDiary?branch=develop)
