@@ -8,8 +8,4 @@ install: pip install -r requirements.txt
 - pip install coverage
 - pip install coveralls
 # command to run tests
-script: pytest --cov
-- coveralls
-after_success: coveralls
-
-
+script: nosetests
