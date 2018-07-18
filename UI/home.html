@@ -1,0 +1,41 @@
+<html>
+    <head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Home page</title>
+		<link rel="stylesheet" href="index.css">
+    <body>
+        <script src="index.js"></script>    
+        <div class="container">
+                <div class="head"> 
+                        <h1>MY DIARY</h1>
+                        <h3>OUR NUMBER ONE JOURNAL</h3>
+                   </div>
+                <div class="row1">
+                    <div class="col1"><center><a href="home.html" id="links">HOME</a> <button id="links" onclick="profile()">PROFILE</button><button id="links"onclick="reminders()">REMINDERS(0)</button><button id="links"onclick="logout()">LOGOUT</button></center></div>
+                    <div class="col2"><h2 id="u">ACTIVE USER : JOHN SMITH</h2></div>
+                </div></br>
+                <h3>HOME PAGE</h3>
+                <div class="row2">
+                        <div class="col7"><center>
+                            <button id="active"onclick="home()"><h2>WRITE IN DIARY</h2></button><br><br>
+                            <button class="NotActive"onclick="allentries()"><h3>ALL ENTRIES</h3></button></center>       
+                        </div>
+                        <div class="colx"></div>
+                           <div class="col8">
+                               <center><h3 id="register">HELLO DIARY</h3></center><br>
+                               <form>
+                                   <center>
+                                   <input type="text"name="title"placeholder="ENTER HEADING / TITLE"required><br><br>
+                                  <textarea placeholder="WRITE NEW ENTRY HERE..."required></textarea>
+                                        <br>
+                                        <button id="registerbutton" formaction="AllEntries.html">SAVE ENTRY</button></center>
+                                    </center>
+                               </form>
+                               <p><b>VALIDATION MESSAGE HERE</b></p>
+                           </div>
+                </div><br><br>
+                <div class="bot"></div>   
+        </div>
+    </body>
+</html>
