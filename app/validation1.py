@@ -1,5 +1,6 @@
 """validation page"""
 
+
 class Validate():
     """class to validate diary data"""
 
