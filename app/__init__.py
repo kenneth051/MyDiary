@@ -1,7 +1,9 @@
 """flask initializing file"""
 from flask import Flask, jsonify
+from flask_cors import CORS
 from app.routes import Routes
 APP = Flask(__name__)
+CORS(APP)
 ROUTES = Routes()
 ROUTES.initialize(APP)
 
