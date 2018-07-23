@@ -1,3 +1,12 @@
+[![Build Status](https://travis-ci.org/kenneth051/MyDiary.svg?branch=develop)](https://travis-ci.org/kenneth051/MyDiary)
+
+<a href="https://codeclimate.com/github/kenneth051/MyDiary/maintainability"><img src="https://api.codeclimate.com/v1/badges/9d29aad9c943fed7228d/maintainability" /></a>
+
+
+[![Coverage Status](https://coveralls.io/repos/github/kenneth051/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/kenneth051/MyDiary?branch=develop)
+
+
+
 MyDiary
 is a website that enables someone to record their daily activities,personal affairs as well as emotions that may occur from time to time. One registers, logs in and then he or she starts writing.
 
@@ -63,9 +72,3 @@ To run tests
 
  The endpoints have been developed Using Python OOP based together with Flask framework implementing non persistent data using data structures for storage.
  
-[![Build Status](https://travis-ci.org/kenneth051/MyDiary.svg?branch=develop)](https://travis-ci.org/kenneth051/MyDiary)
-
-<a href="https://codeclimate.com/github/kenneth051/MyDiary/maintainability"><img src="https://api.codeclimate.com/v1/badges/9d29aad9c943fed7228d/maintainability" /></a>
-
-
-[![Coverage Status](https://coveralls.io/repos/github/kenneth051/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/kenneth051/MyDiary?branch=develop)
