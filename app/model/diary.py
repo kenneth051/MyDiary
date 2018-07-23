@@ -71,7 +71,6 @@ class Diary():
                 info["title"] = data["title"]
                 info["body"] = data["body"]
                 info["updated"] = new_date
-                result = "update successful"
-                response = jsonify({"data": info, "message": "update successfuly"})
+                response = jsonify({"data": info, "message": "update successful"})
                 response.status_code = 200
         return response

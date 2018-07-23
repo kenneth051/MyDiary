@@ -94,7 +94,7 @@ class FlaskTesting(unittest.TestCase):
             dict(title="kampala", body="this is my body updated")),
                          content_type='application/json')
         self.assertEqual(res.status_code, 200)
-        self.assertIn(b"updated successfuly", res.data)
+        self.assertIn(b"update successful", res.data)
 
     def test_to_update_none_entry(self):
         """test to update entry with invalid id"""
