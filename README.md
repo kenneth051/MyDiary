@@ -62,10 +62,12 @@ is a website that enables someone to record their daily activities,personal affa
             source bin/activate
 
 3-Install the dependencies in your virtual enviroment
-		    pip install -r requirements.txt
+
+		    -pip install -r requirements.txt
 
 4-Run the application when you are in it's parent directory
-		    python run.py
+
+		    -python run.py
 
 **Testing**
 
