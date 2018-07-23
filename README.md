@@ -51,6 +51,7 @@ is a website that enables someone to record their daily activities,personal affa
 -git clone https://github.com/kenneth051/MyDiary.git 
  
  2-Install a virtual enviroment
+ 
 			-pip install virtaulenv
 			-in the projects root directory, create a virtual enviroment
 			-virtualenv "Name of virtaulenv here without the qoutes"
