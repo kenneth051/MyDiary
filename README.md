@@ -2,7 +2,6 @@
 
 <a href="https://codeclimate.com/github/kenneth051/MyDiary/maintainability"><img src="https://api.codeclimate.com/v1/badges/9d29aad9c943fed7228d/maintainability" /></a>
 
-
 [![Coverage Status](https://coveralls.io/repos/github/kenneth051/MyDiary/badge.svg?branch=develop)](https://coveralls.io/github/kenneth051/MyDiary?branch=develop)
 
 
@@ -47,22 +46,28 @@ is a website that enables someone to record their daily activities,personal affa
 
 **GETTING STARTED WITH MY DIARY**
 
-1- Clone the repository
+1- Clone the repository to your computer
 
--git clone https://github.com/kenneth051/MyDiary.git
+-git clone https://github.com/kenneth051/MyDiary.git 
+ 
+ 2-Install a virtual enviroment
+		-pip install virtaulenv
+		-in the projects root directory, create a virtual enviroment
+		-virtualenv "Name of virtaulenv here without the qoutes"
+		-activate the virtual env, in your project's root directory
 
-2-Install the dependencies
+		-on windows
+			-"virtual_env_folder_name_here"\Scripts\activate
 
--pip install -r requirements.txt
+3-Install the dependencies in your virtual enviroment
+		-pip install -r requirements.txt
 
-Run the application when you are in it's parent directory
-
-3-python run.py
+4-Run the application when you are in it's parent directory
+		-python run.py
 
 **Testing**
 
 To run tests
-
 #in root directory
 
 -pytest
