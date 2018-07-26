@@ -12,6 +12,8 @@ is a website that enables someone to record their daily activities,personal affa
  The UI pages have been developed with HTML, CSS and Javascript
 	
  The link to the UI pages is https://kenneth051.github.io/MyDiary/UI/index.html
+
+ The link to heroku is  https://bootcamp-challenge2.herokuapp.com/API/v1/entries
 	
 
  **FEATURES OF MYDIARY**
