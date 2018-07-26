@@ -1,12 +1,10 @@
 """api views"""
 import uuid
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 from app.model.diary import Diary
 from app.validation2 import Validate2
 
 APP = Flask(__name__)
-CORS(APP)
 
 
 @APP.route('/API/v1/entries', methods=['POST'])
