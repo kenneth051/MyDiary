@@ -41,7 +41,7 @@ class FlaskTesting(unittest.TestCase):
            dict(title="Andela",
                  body="this is andela")), content_type='application/json')
         self.assertEqual(res.status_code, 409)
-        self.assertIn(b"Duplicate data,Try again", res.data)    
+        self.assertIn(b"Duplicate data,Try again", res.data)
 
     def test_to_get_all_entries(self):
         """test to get all entries"""
@@ -50,7 +50,6 @@ class FlaskTesting(unittest.TestCase):
                               content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
-    
     def test_validation_when_creating_entry(self):
         """test to create an entry"""
         tester = APP.test_client(self)
