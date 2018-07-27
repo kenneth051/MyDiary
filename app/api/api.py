@@ -24,7 +24,7 @@ def create_entries():
             response.status_code = 400
             return response
     except:
-        response = jsonify({"message": "DATA FIELDS ISSUE"})
+        response = jsonify({"message": "INVALID OR MISSING DATA FIELDS,CHECK THEM PLEASE"})
         response.status_code = 400
         return response
 
@@ -58,7 +58,7 @@ def update_entry(entryid):
             response.status_code = 400
             return response
     except:
-        response = jsonify({"message": "DATA FIELDS ISSUE"})
+        response = jsonify({"message": "INVALID OR MISSING DATA FIELDS,CHECK THEM PLEASE"})
         response.status_code = 400
         return response
 

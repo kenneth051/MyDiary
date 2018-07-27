@@ -49,9 +49,9 @@ class Diary():
     @classmethod
     def single_entry(cls, entryid):
         """method to get single entry"""
-        data = "invalid Id,Try again"
+        data = "invalid URL,Try again"
         response = jsonify({"data": data})
-        response.status_code = 422
+        response.status_code = 404
         for info in Diary.entries:
             if info['entry_id'] == entryid:
                 response = jsonify({"data": info})
@@ -61,9 +61,9 @@ class Diary():
     @classmethod
     def updating_entry(cls, entryid, data):
         """method to update entries"""
-        result = "invalid Id, cannot update"
+        result = "invalid URL, cannot update"
         response = jsonify({"data": result})
-        response.status_code = 422
+        response.status_code = 404
         now = datetime.now()
         new_date = now.strftime("%c")
         for info in Diary.entries:
