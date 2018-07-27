@@ -13,7 +13,7 @@ class Validate2():
         result = ""
         if(not re.search("[a-zA-Z0-9]", self.title) or not
            re.search("^(\s|\S)*(\S)+(\s|\S)*$", self.body)):
-            result = "wrong data"
+            result = "INCORRECT INPUT, YOU CAN'T SUBMIT EMPTY FIELD OR FIRST CHARACTER SHOULD BE ALPHA NUMERIC"
         else:
             result = True
         return result

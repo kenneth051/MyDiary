@@ -34,6 +34,15 @@ class FlaskTesting(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertIn(b"Entry saved", res.data)
 
+    def test_to_check_duplication_of_data_when_creating_entry(self):
+        """test for duplicate data entry"""
+        tester = APP.test_client(self)
+        res = tester.post('/API/v1/entries', data=json.dumps(
+           dict(title="Andela",
+                 body="this is andela")), content_type='application/json')
+        self.assertEqual(res.status_code, 409)
+        self.assertIn(b"Duplicate data,Try again", res.data)    
+
     def test_to_get_all_entries(self):
         """test to get all entries"""
         tester = APP.test_client(self)
@@ -41,25 +50,17 @@ class FlaskTesting(unittest.TestCase):
                               content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
-    def test_to_duplicate_data(self):
-        """test for duplicate data entry"""
-        tester = APP.test_client(self)
-        res = tester.post('/API/v1/entries', data=json.dumps(
-            dict(entry_id=2, title="kampala",
-                 body="this is my body")), content_type='application/json')
-        self.assertEqual(res.status_code, 409)
-        self.assertIn(b"Duplicate data,Try again", res.data)
-
-    def test_create_data_validation(self):
+    
+    def test_validation_when_creating_entry(self):
         """test to create an entry"""
         tester = APP.test_client(self)
         res = tester.post('/API/v1/entries', data=json.dumps(
             dict(entry_id=1, title="***",
                  body="  ")), content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn(b"wrong data", res.data)
+        self.assertIn(b"INCORRECT INPUT, YOU CAN'T SUBMIT EMPTY FIELD OR FIRST CHARACTER SHOULD BE ALPHA NUMERIC", res.data)
 
-    def test_for_bad_data_entry(self):
+    def test_creating_entry_with_wrong_data_format(self):
         """test to create entry with bad data"""
         tester = APP.test_client(self)
         res = tester.post('/API/v1/entries', data="this is bad data",
@@ -80,12 +81,12 @@ class FlaskTesting(unittest.TestCase):
                               content_type="application/json")
         self.assertEqual(response.status_code, 404)
 
-    def test_to_get_none_data_entry(self):
+    def test_for_id_that_doesnt_exist(self):
         """test to get entry with invalid id"""
         tester = APP.test_client(self)
         response = tester.get('/API/v1/entries/2',
                               content_type="application/json")
-        self.assertEqual(response.status_code, 422)
+        self.assertEqual(response.status_code, 404)
 
     def test_to_update_entry(self):
         """test to update an entry"""
@@ -96,31 +97,31 @@ class FlaskTesting(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertIn(b"update successful", res.data)
 
-    def test_to_update_none_entry(self):
+    def test_to_update_entry_that_doesnt_exist(self):
         """test to update entry with invalid id"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/6', data=json.dumps(
             dict(title="kampala", body="this is my body updated")),
                          content_type='application/json')
-        self.assertEqual(res.status_code, 422)
-        self.assertIn(b"invalid Id, cannot update", res.data)
+        self.assertEqual(res.status_code, 404)
+        self.assertIn(b"invalid URL, cannot update", res.data)
 
-    def test_to_update_using_try_catch(self):
+    def test_to_update_sending_incomplete_parameters(self):
         """test to update entry with invalid id"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/6', data=json.dumps(
             dict(body="this is my body updated")),
                          content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn(b"DATA FIELDS ISSUE", res.data)
+        self.assertIn(b"INVALID OR MISSING DATA FIELDS,CHECK THEM PLEASE", res.data)
 
-    def test_to_update_bad_data(self):
+    def test_to_update_data_validation(self):
         """test to update entry sending bad data"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/6', data=json.dumps(
             dict(title="***", body=" ")), content_type='application/json')
         self.assertEqual(res.status_code, 400)
-        self.assertIn(b"wrong data", res.data)
+        self.assertIn(b"INCORRECT INPUT, YOU CAN'T SUBMIT EMPTY FIELD OR FIRST CHARACTER SHOULD BE ALPHA NUMERIC", res.data)
 
 if __name__ == '__main__':
     unittest.main()
