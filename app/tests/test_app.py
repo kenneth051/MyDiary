@@ -34,11 +34,11 @@ class FlaskTesting(unittest.TestCase):
         self.assertEqual(res.status_code, 201)
         self.assertIn(b"Entry saved", res.data)
 
-    def test_to_check_duplication_of_data_when_creating_entry(self):
-        """test for duplicate data entry"""
+    def test_duplicated_data(self):
+        """test for duplicate data on creating entry entry"""
         tester = APP.test_client(self)
         res = tester.post('/API/v1/entries', data=json.dumps(
-           dict(title="Andela",
+            dict(title="Andela",
                  body="this is andela")), content_type='application/json')
         self.assertEqual(res.status_code, 409)
         self.assertIn(b"Duplicate data,Try again", res.data)
@@ -50,8 +50,8 @@ class FlaskTesting(unittest.TestCase):
                               content_type="application/json")
         self.assertEqual(response.status_code, 200)
 
-    def test_validation_when_creating_entry(self):
-        """test to create an entry"""
+    def test_validation_creating_entry(self):
+        """test validation on creation of an entry"""
         tester = APP.test_client(self)
         res = tester.post('/API/v1/entries', data=json.dumps(
             dict(entry_id=1, title="***",
@@ -59,7 +59,7 @@ class FlaskTesting(unittest.TestCase):
         self.assertEqual(res.status_code, 400)
         self.assertIn(b"INCORRECT INPUT, YOU CAN'T SUBMIT EMPTY FIELD OR FIRST CHARACTER SHOULD BE ALPHA NUMERIC", res.data)
 
-    def test_creating_entry_with_wrong_data_format(self):
+    def test_creating_entry_data_format(self):
         """test to create entry with bad data"""
         tester = APP.test_client(self)
         res = tester.post('/API/v1/entries', data="this is bad data",
@@ -91,12 +91,21 @@ class FlaskTesting(unittest.TestCase):
         """test to update an entry"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/18023171', data=json.dumps(
-            dict(title="kampala", body="this is my body updated")),
+            dict(title="home", body="home")),
                          content_type='application/json')
         self.assertEqual(res.status_code, 200)
         self.assertIn(b"update successful", res.data)
 
-    def test_to_update_entry_that_doesnt_exist(self):
+    def test_update_with_duplicate_data(self):
+        """test to update an entry with data that has already been used"""
+        tester = APP.test_client(self)
+        res = tester.put('/API/v1/entries/18023171', data=json.dumps(
+            dict(title="home", body="this is my body updated")),
+                         content_type='application/json')
+        self.assertEqual(res.status_code, 409)
+        self.assertIn(b"You are sending data already used, change title or body", res.data)
+
+    def test_update_missing_entry(self):
         """test to update entry with invalid id"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/6', data=json.dumps(
@@ -105,8 +114,8 @@ class FlaskTesting(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertIn(b"invalid URL, cannot update", res.data)
 
-    def test_to_update_sending_incomplete_parameters(self):
-        """test to update entry with invalid id"""
+    def test_update_bad_parameters(self):
+        """test to updating an entry with incompete parameters"""
         tester = APP.test_client(self)
         res = tester.put('/API/v1/entries/6', data=json.dumps(
             dict(body="this is my body updated")),
