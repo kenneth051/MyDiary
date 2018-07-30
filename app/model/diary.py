@@ -18,6 +18,7 @@ class Diary():
 
     def creating_entry(self):
         """method to create entries"""
+        response = ""
         today = str(date.today())
         curent_time = str(datetime.time(datetime.now()))
         entry = Diary(self.entry_id, self.title, self.body)
@@ -31,12 +32,11 @@ class Diary():
         if Validate.validate_entry(Diary.entries, entry):
             response = jsonify({"message": "Duplicate data,Try again"})
             response.status_code = 409
-            return response
         else:
             Diary.entries.append(lst)
             response = jsonify({"message": "Entry saved", "data": lst})
             response.status_code = 201
-            return response
+        return response
 
     @classmethod
     def all_entries(cls):
@@ -68,9 +68,13 @@ class Diary():
         new_date = now.strftime("%c")
         for info in Diary.entries:
             if info['entry_id'] == entryid:
-                info["title"] = data["title"]
-                info["body"] = data["body"]
-                info["updated"] = new_date
-                response = jsonify({"data": info, "message": "update successful"})
-                response.status_code = 200
+                if Validate.validate_duplicate_on_update(Diary.entries, data):
+                    response = jsonify({"message": "You are sending data already used, change title or body"})
+                    response.status_code = 409
+                else:
+                    info["title"] = data["title"]
+                    info["body"] = data["body"]
+                    info["updated"] = new_date
+                    response = jsonify({"data": info, "message": "update successful"})
+                    response.status_code = 200
         return response
